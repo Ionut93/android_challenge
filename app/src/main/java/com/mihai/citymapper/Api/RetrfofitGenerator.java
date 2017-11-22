@@ -14,16 +14,17 @@ public class RetrfofitGenerator {
 
     private static final String API_BASE_URL = "https://api.tfl.gov.uk/";
 
-    private static HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-    private static OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder()
+    private static final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor()
+            .setLevel(HttpLoggingInterceptor.Level.BODY);
+    private static final OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor);
 
-    private static Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+    private static final Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             .client(okHttpBuilder.build())
             .addConverterFactory(GsonConverterFactory.create());
 
-    private static Retrofit retrofitInstance = retrofitBuilder.build();
+    private static final Retrofit retrofitInstance = retrofitBuilder.build();
 
     public static <T> T createAPI(Class<T> apiClass) {
         return retrofitInstance.create(apiClass);
