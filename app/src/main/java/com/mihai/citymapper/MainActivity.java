@@ -7,6 +7,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final double LATITUDE = 51.519425;
     private final double LONGITUDE = -0.169666;
+    private final String STOPTYPETUBES = "NaptanMetroStation";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
