@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
