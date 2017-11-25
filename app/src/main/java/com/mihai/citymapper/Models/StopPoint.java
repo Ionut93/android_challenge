@@ -1,4 +1,4 @@
-package com.mihai.citymapper.Models;
+package com.mihai.citymapper.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -22,4 +22,24 @@ public class StopPoint {
 
     @SerializedName("lon")
     private double lon;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getDistanceToStopPoint() {
+        return distanceToStopPoint;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLon() {
+        return lon;
+    }
 }
