@@ -70,10 +70,14 @@ public class MainActivityPresenter {
                             }
                             getArrivalsForStops(0);
                         } else {
-                            //TODO show message with no stoppoints arround
+                            if (view != null) {
+                                view.hideProgress();
+                            }
                         }
-
                     }
+                }
+                if (view != null) {
+                    view.hideProgress();
                 }
             }
 
@@ -87,7 +91,6 @@ public class MainActivityPresenter {
                 if (view != null) {
                     view.hideProgress();
                 }
-                //TODO show message with error
             }
         });
     }
@@ -118,8 +121,6 @@ public class MainActivityPresenter {
 
                 @Override
                 public void onFailure(Call<List<Arrival>> call, Throwable t) {
-                    //TODO show message with error
-                    Log.e(TAG, "onFailure " + t.getMessage() );
                     if (stopPointWithArrivals.size() > currentStopPointPosition + 1) {
                         getArrivalsForStops(currentStopPointPosition + 1);
                     } else {

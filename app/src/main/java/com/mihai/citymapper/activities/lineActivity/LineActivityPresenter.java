@@ -38,14 +38,12 @@ public class LineActivityPresenter {
                             List<StopPoint> stopPointList = response.body();
                             updateDistance(stopPointList);
                             stopPointsViewModel.getStopPointMutableLiveData().setValue(stopPointList);
-                        } else {
-                            //TODO show error message
-                        }
+                        } 
                     }
 
                     @Override
                     public void onFailure(Call<List<StopPoint>> call, Throwable t) {
-//TODO show error message to user
+
                     }
                 });
     }
