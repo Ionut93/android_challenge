@@ -25,6 +25,9 @@ public class Arrival implements Comparable<Arrival> {
     @SerializedName("timeToStation")
     private int timeToStation;
 
+    @SerializedName("lineId")
+    private String lineId;
+
     public String getId() {
         return id;
     }
@@ -39,6 +42,10 @@ public class Arrival implements Comparable<Arrival> {
 
     public String getExpectedArrival() {
         return expectedArrival;
+    }
+
+    public String getLineId() {
+        return lineId;
     }
 
     @Override

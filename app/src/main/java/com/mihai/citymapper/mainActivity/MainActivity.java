@@ -14,12 +14,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.mihai.citymapper.adapters.ArrivalAdapter;
 import com.mihai.citymapper.adapters.StopPointAdapter;
 import com.mihai.citymapper.api.Responses.StopPointsResponse;
 import com.mihai.citymapper.api.RetrfofitGenerator;
 import com.mihai.citymapper.api.TflApi;
 import com.mihai.citymapper.R;
+import com.mihai.citymapper.models.Arrival;
 import com.mihai.citymapper.models.StopPointWithArrivals;
 import com.mihai.citymapper.viewModels.StopPointWithArrivalsViewModel;
 
@@ -41,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     private Handler handler;
     private Runnable runnable;
     private AlertDialog alertDialog;
+    private ArrivalAdapter.ArrivalAdapterCallback adapterCallback = new ArrivalAdapter.ArrivalAdapterCallback() {
+        @Override
+        public void onArrivalClicked(Arrival arrival) {
+            Toast.makeText(MainActivity.this, "onItemClicked " + arrival.getDestinationName(), Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
         model.getData().observe(this, observer);
 
-        stopPointAdapter = new StopPointAdapter();
+        stopPointAdapter = new StopPointAdapter(adapterCallback);
         rvStops.setLayoutManager(new LinearLayoutManager(this));
         rvStops.setAdapter(stopPointAdapter);
 

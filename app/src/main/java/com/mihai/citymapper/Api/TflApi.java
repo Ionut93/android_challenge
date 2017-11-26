@@ -28,4 +28,9 @@ public interface TflApi {
     public Call<List<Arrival>> getArrivals(@Path("id") String stopPointId,
                                            @Query("app_id") String appId,
                                            @Query("app_key") String appKey);
+
+    @GET("StopPoint/{ids}")
+    public Call getStopPointsForId(@Path("ids") String id,
+                                   @Query("app_id") String appId,
+                                   @Query("app_key") String appKey);
 }

@@ -22,6 +22,11 @@ import java.util.List;
 public class StopPointAdapter extends RecyclerView.Adapter<StopPointAdapter.StopPointViewHolder> {
 
     private List<StopPointWithArrivals> stopPointWithArrivalsList;
+    private ArrivalAdapter.ArrivalAdapterCallback callback;
+
+    public StopPointAdapter(ArrivalAdapter.ArrivalAdapterCallback callback) {
+        this.callback = callback;
+    }
 
     @Override
     public StopPointViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,7 +42,7 @@ public class StopPointAdapter extends RecyclerView.Adapter<StopPointAdapter.Stop
 
         holder.tvStopName.setText(stopPoint.getName());
         holder.rvArrivals.setLayoutManager(new LinearLayoutManager(null));
-        holder.rvArrivals.setAdapter(new ArrivalAdapter(arrivals));
+        holder.rvArrivals.setAdapter(new ArrivalAdapter(arrivals, callback));
 
 
     }
