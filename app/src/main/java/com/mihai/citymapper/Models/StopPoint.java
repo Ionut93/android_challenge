@@ -42,4 +42,8 @@ public class StopPoint {
     public double getLon() {
         return lon;
     }
+
+    public void setDistanceToStopPoint(double distanceToStopPoint) {
+        this.distanceToStopPoint = distanceToStopPoint;
+    }
 }

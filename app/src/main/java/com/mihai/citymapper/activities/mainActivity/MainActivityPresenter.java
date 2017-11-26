@@ -1,6 +1,5 @@
-package com.mihai.citymapper.mainActivity;
+package com.mihai.citymapper.activities.mainActivity;
 
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.mihai.citymapper.api.Responses.StopPointsResponse;
@@ -15,7 +14,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -121,7 +119,7 @@ public class MainActivityPresenter {
                 @Override
                 public void onFailure(Call<List<Arrival>> call, Throwable t) {
                     //TODO show message with error
-                    Log.e(TAG, "onFailure");
+                    Log.e(TAG, "onFailure " + t.getMessage() );
                     if (stopPointWithArrivals.size() > currentStopPointPosition + 1) {
                         getArrivalsForStops(currentStopPointPosition + 1);
                     } else {

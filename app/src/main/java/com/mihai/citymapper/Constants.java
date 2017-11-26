@@ -12,5 +12,4 @@ public class Constants {
     public final static String APP_ID = "3659ce01";
     public final static String KEY = "8f84aaf7ba08702d50bef9bf4d438c20";
 
-
 }

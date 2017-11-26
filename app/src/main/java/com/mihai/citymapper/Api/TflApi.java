@@ -3,6 +3,7 @@ package com.mihai.citymapper.api;
 import com.mihai.citymapper.api.Responses.ArrivalsResponse;
 import com.mihai.citymapper.api.Responses.StopPointsResponse;
 import com.mihai.citymapper.models.Arrival;
+import com.mihai.citymapper.models.StopPoint;
 
 import java.util.List;
 
@@ -29,8 +30,8 @@ public interface TflApi {
                                            @Query("app_id") String appId,
                                            @Query("app_key") String appKey);
 
-    @GET("StopPoint/{ids}")
-    public Call getStopPointsForId(@Path("ids") String id,
-                                   @Query("app_id") String appId,
-                                   @Query("app_key") String appKey);
+    @GET("Line/{id}/stoppoints")
+    public Call<List<StopPoint>> getStopPointsForLine(@Path("id") String id,
+                                                      @Query("app_id") String appId,
+                                                      @Query("app_key") String appKey);
 }

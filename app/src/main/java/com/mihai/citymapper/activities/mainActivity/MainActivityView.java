@@ -1,4 +1,4 @@
-package com.mihai.citymapper.mainActivity;
+package com.mihai.citymapper.activities.mainActivity;
 
 /**
  * Created by mihai on 25/11/2017.

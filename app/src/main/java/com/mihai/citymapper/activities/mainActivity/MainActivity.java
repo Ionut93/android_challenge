@@ -1,8 +1,10 @@
-package com.mihai.citymapper.mainActivity;
+package com.mihai.citymapper.activities.mainActivity;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.Location;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
@@ -11,16 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.mihai.citymapper.activities.lineActivity.LineActivity;
 import com.mihai.citymapper.adapters.ArrivalAdapter;
 import com.mihai.citymapper.adapters.StopPointAdapter;
-import com.mihai.citymapper.api.Responses.StopPointsResponse;
-import com.mihai.citymapper.api.RetrfofitGenerator;
-import com.mihai.citymapper.api.TflApi;
 import com.mihai.citymapper.R;
 import com.mihai.citymapper.models.Arrival;
 import com.mihai.citymapper.models.StopPointWithArrivals;
@@ -28,11 +27,10 @@ import com.mihai.citymapper.viewModels.StopPointWithArrivalsViewModel;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class MainActivity extends AppCompatActivity implements MainActivityView {
+
+    public static final String ARRIVAL = "arrival";
+    public static final String BUNDLE = "bundle";
 
     private final static String TAG = MainActivity.class.getSimpleName();
     private MainActivityPresenter presenter;
@@ -47,7 +45,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     private ArrivalAdapter.ArrivalAdapterCallback adapterCallback = new ArrivalAdapter.ArrivalAdapterCallback() {
         @Override
         public void onArrivalClicked(Arrival arrival) {
-            Toast.makeText(MainActivity.this, "onItemClicked " + arrival.getDestinationName(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, LineActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(ARRIVAL, arrival);
+            intent.putExtra(BUNDLE, bundle);
+            startActivity(intent);
         }
     };
 
@@ -107,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         stopPointAdapter = new StopPointAdapter(adapterCallback);
         rvStops.setLayoutManager(new LinearLayoutManager(this));
         rvStops.setAdapter(stopPointAdapter);
-
 
     }
 
