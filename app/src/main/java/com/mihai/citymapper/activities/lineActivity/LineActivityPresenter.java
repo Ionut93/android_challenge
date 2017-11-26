@@ -38,7 +38,7 @@ public class LineActivityPresenter {
                             List<StopPoint> stopPointList = response.body();
                             updateDistance(stopPointList);
                             stopPointsViewModel.getStopPointMutableLiveData().setValue(stopPointList);
-                        } 
+                        }
                     }
 
                     @Override

@@ -37,7 +37,6 @@ public class LineActivity extends AppCompatActivity implements LineActivityView 
         createData();
         if (savedInstanceState != null) {
             int minPosition = savedInstanceState.getInt(MIN_DISTANCE_POSITION, -1);
-            Log.e("MIN POS ", "" + minPosition);
             presenter.setMinDistancePosition(minPosition);
             lineAdapter.setMinDistancePosition(presenter.getMinDistancePosition());
             lineAdapter.notifyDataSetChanged();
@@ -85,7 +84,6 @@ public class LineActivity extends AppCompatActivity implements LineActivityView 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.e("Save state ", " " + presenter.getMinDistancePosition());
         outState.putInt(MIN_DISTANCE_POSITION, presenter.getMinDistancePosition());
 
     }
